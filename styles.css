@@ -10,6 +10,7 @@ body {
 
     height: 100vh;           /* makes flexbox work full-screen */
     margin: 0;               /* removes default body margin */
+    overflow-y: auto;
 }
 
 
@@ -17,15 +18,17 @@ body {
 
 .label-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center;    /* Center children horizontally */
     padding: 10px;
-    /* border: 20px solid rgb(255, 255, 255); */
-    /* background-color: rgb(43, 43, 43); */
-    position: fixed;
-    top: 0px;
-    width: 100%;
+    
+    position: absolute;     /* Needed if using top */
+    top: 0%;                 /* Position from the top (0px) */
+    width: 100%;            /* Full width of parent/container */
+    box-sizing: border-box; /* Include padding in width */
 }
+
+
 
 .label-container label {
     color: white;
@@ -36,23 +39,25 @@ body {
 
 /* Container fixed on screen */
 #container {
-   /* border: 2px solid rgb(255, 255, 255);  */
-    position: absolute;         /* Change from fixed to absolute */
-    top: 20%;                   /* Keep top spacing */
+    border: 2px solid rgb(255, 255, 255); 
+    position: absolute;         
+    top: 20%;                   /* Fixed top position */
     left: 50%;
     transform: translateX(-50%);
+    
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;            /* Wrap items on smaller screens */
-    gap: 1rem;                  /* Space between groups */
-    margin-top: 1rem;
-    height: auto;               /* Adjust height based on content */
-    max-height: 80%;            /* Limit maximum height */
-    width: 80%;                 /* Responsive width */
+    flex-direction: column;     /* Stack children vertically */
+    gap: 1rem;                  /* Space between children */
+    
+    width: 80%;                 
     align-items: center;
-    flex-shrink: 1;             /* Allow shrinking */
+    flex-shrink: 1;             
     box-sizing: border-box;
-    overflow-y: auto;           /* Scroll if content exceeds container */
+    
+    max-height: calc(100vh - 20% - 20px);  /* Allow growth downward but leave 20px gap at bottom */
+    overflow-y: auto;                       /* Scroll if content exceeds container */
+    
+    padding-bottom: 20px;       /* Extra space at the bottom */
 }
 
 
@@ -82,7 +87,7 @@ body {
 /* Make dropdowns shrink/grow responsively */
 .main-group select {
     flex: 1 1 auto;        /* Grow and shrink */
-    min-width: 100px;      /* Prevent too small */
+    min-width: 50px;      /* Prevent too small */
     padding: 0.3rem;
     border: 1px solid #888;
     border-radius: 4px;
@@ -136,3 +141,5 @@ input {
     font-size: 1.2rem;
     color: white;
 }
+
+
