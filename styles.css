@@ -1,0 +1,137 @@
+body {
+    background: radial-gradient(circle at top right, rgb(65, 65, 65), rgb(0, 0, 0));
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    display: flex;
+    flex-direction: column;  /* FIXED */
+    align-items: center;     /* centers horizontally */
+    justify-content: center; /* centers vertically */
+
+    height: 100vh;           /* makes flexbox work full-screen */
+    margin: 0;               /* removes default body margin */
+}
+
+
+
+
+.label-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    /* border: 20px solid rgb(255, 255, 255); */
+    /* background-color: rgb(43, 43, 43); */
+    position: fixed;
+    top: 0px;
+    width: 100%;
+}
+
+.label-container label {
+    color: white;
+    font-size: 3rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* Container fixed on screen */
+#container {
+   /* border: 2px solid rgb(255, 255, 255);  */
+    position: absolute;         /* Change from fixed to absolute */
+    top: 20%;                   /* Keep top spacing */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;            /* Wrap items on smaller screens */
+    gap: 1rem;                  /* Space between groups */
+    margin-top: 1rem;
+    height: auto;               /* Adjust height based on content */
+    max-height: 80%;            /* Limit maximum height */
+    width: 80%;                 /* Responsive width */
+    align-items: center;
+    flex-shrink: 1;             /* Allow shrinking */
+    box-sizing: border-box;
+    overflow-y: auto;           /* Scroll if content exceeds container */
+}
+
+
+
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Each main group in a row */
+.main-group {
+    display: flex;             
+    gap: 0.5rem;               
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    min-width: 80%;          
+    max-width: 80%;          
+    padding: 0.5rem;
+    flex: 0 0 auto;            
+    box-sizing: border-box;    
+       /* Wrap items on smaller screens */
+    align-items: center;
+}
+
+/* Make dropdowns shrink/grow responsively */
+.main-group select {
+    flex: 1 1 auto;        /* Grow and shrink */
+    min-width: 100px;      /* Prevent too small */
+    padding: 0.3rem;
+    border: 1px solid #888;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Delete button fixed size */
+.main-group button {
+    flex: 0 0 auto;        /* Do not shrink */
+    padding: 0.3rem 0.5rem;
+    border: 1px solid #888;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+/* Input styling (optional if you add input later) */
+input {
+    padding: 0.3rem;
+    border: 1px solid #888;
+    border-radius: 4px;
+}
+
+/* Add Dropdown button styling */
+#addDropdownBtn {
+    width: 200px;
+    height: 50px;
+}
+
+#calculateGrades {
+    width: 200px;
+}
+
+/* Responsive for small screens */
+@media (max-width: 500px) {
+    .main-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .main-group button {
+        width: 100%;
+    }
+}
+
+
+#resultContainer {
+    margin-top: 1rem; 
+    font-weight: bold; 
+    font-size: 1.2rem;
+    color: white;
+}

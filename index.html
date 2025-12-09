@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>GWA Calculator</title>
+</head>
+<body>
+    <div class = "label-container">
+        <label>GWA Calculator!</label>
+    </div>
+
+    
+<div id="container">
+<div class = "buttons">
+<button id="addDropdownBtn">Add Another Subject</button>
+<button id="calculateGrades">Calculate</button>
+</div>
+<div id="resultContainer">GWA Result: __</div>
+</div>
+
+
+<script>
+const container = document.getElementById('container');
+const addDropdownBtn = document.getElementById('addDropdownBtn');
+
+// Options for the main dropdown
+const mainOptions = [
+  "Computer Programming 3",
+  "Data Structures and Algorithms",
+  "Computer Architecture",
+  "Fundamentals of Networking",
+  "Web Systems and Technologies 1",
+  "Science, Technology and Society",
+  "Environmental Science",
+  "Physical Activities Towards Health and Fitness 3 (PATH-Fit 3): Any of the Menu of Courses on Dance Sports, Martial Arts, Group Exercises, and Outdoor and Adventure Activities"
+];
+
+// Options for the input dropdown
+const inputOptions = [1.00, 1.25, 1.50, 1.75, 2.00, 2.25, 2.50, 2.75, 3.00, 4.00, 5.00];
+
+// Options for the new 3/2 dropdown
+const threeTwoOptions = [3, 2];
+
+function createMainGroup() {
+  const groupDiv = document.createElement('div');
+  groupDiv.className = 'main-group';
+
+  // Main dropdown
+  const mainSelect = document.createElement('select');
+  const defaultOption = document.createElement('option');
+  defaultOption.value = "";
+  defaultOption.textContent = "--Select subject--";
+  mainSelect.appendChild(defaultOption);
+
+  mainOptions.forEach(opt => {
+    const option = document.createElement('option');
+    option.value = opt;
+    option.textContent = opt;
+    mainSelect.appendChild(option);
+  });
+
+  // Input dropdown (grades) with placeholder
+  const inputSelect = document.createElement('select');
+  const gradePlaceholder = document.createElement('option');
+  gradePlaceholder.value = "";
+  gradePlaceholder.textContent = "Enter Grade";
+  gradePlaceholder.disabled = true;
+  gradePlaceholder.selected = true;
+  inputSelect.appendChild(gradePlaceholder);
+
+  inputOptions.forEach(opt => {
+    const option = document.createElement('option');
+    option.value = opt;
+    option.textContent = opt;
+    inputSelect.appendChild(option);
+  });
+
+  // New 3/2 dropdown (units) with placeholder
+const threeTwoSelect = document.createElement('select');
+threeTwoOptions.forEach(opt => {
+  const option = document.createElement('option');
+  option.value = opt;
+  option.textContent = opt;
+  if (opt === 3) option.selected = true; // default to 3
+  threeTwoSelect.appendChild(option);
+  });
+  // Delete button
+  const deleteBtn = document.createElement('button');
+  deleteBtn.textContent = 'Delete';
+  deleteBtn.addEventListener('click', () => groupDiv.remove());
+  // Append elements
+  groupDiv.appendChild(mainSelect);
+  groupDiv.appendChild(inputSelect);
+  groupDiv.appendChild(threeTwoSelect);
+  groupDiv.appendChild(deleteBtn);
+
+  container.appendChild(groupDiv);
+}
+
+// Add initial main dropdown
+createMainGroup();
+
+// Add more main dropdowns
+addDropdownBtn.addEventListener('click', () => createMainGroup());
+
+
+
+// Function to calculate the weighted average dynamically
+function calculateWeightedAverage() {
+  const groups = document.querySelectorAll('.main-group'); // all main groups
+  let totalWeightedGrades = 0; // sum of (grade * units)
+  let totalUnits = 0;          // sum of units
+
+  groups.forEach(group => {
+    // Get the grade and unit dropdowns dynamically
+    const selects = group.querySelectorAll('select');
+    const gradeSelect = selects[1]; // second select: grade
+    const unitSelect = selects[2];  // third select: units
+
+    const grade = parseFloat(gradeSelect.value);
+    const units = parseFloat(unitSelect.value);
+
+    // Only add if both grade and units are valid numbers
+    if (!isNaN(grade) && !isNaN(units)) {
+      totalWeightedGrades += grade * units;
+      totalUnits += units;
+    }
+  });
+
+  // Avoid division by zero
+  if (totalUnits === 0) return 0;
+  console.log("Process")
+  const weightedAverage = totalWeightedGrades / totalUnits;
+  return weightedAverage.toFixed(2); // return 2 decimals
+}
+
+// Attach to the "Calculate" button
+document.getElementById('calculateGrades').addEventListener('click', () => {
+  const result = calculateWeightedAverage();
+  const resultContainer = document.getElementById('resultContainer');
+  resultContainer.textContent = "GWA Result: " + result;
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
