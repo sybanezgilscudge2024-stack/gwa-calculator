@@ -19,6 +19,7 @@
 </div>
 <div id="resultContainer">GWA Result: __</div>
 </div>
+<audio id="alertSound" src="assets/sounds/paldo.mp3" preload="auto"></audio>
 
 
 <script>
@@ -141,6 +142,12 @@ document.getElementById('calculateGrades').addEventListener('click', () => {
   const result = calculateWeightedAverage();
   const resultContainer = document.getElementById('resultContainer');
   resultContainer.textContent = "GWA Result: " + result;
+
+  if (result < 2 && result > 0) {
+    const sound = document.getElementById('alertSound');
+    sound.play();
+}
+
 });
 
 
