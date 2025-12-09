@@ -23,7 +23,7 @@
 
 </div>
 <audio id="alertSound" src="assets/sounds/paldo.mp3" preload="auto"></audio>
-
+<audio id="alertSound2" src="assets/sounds/congrats.mp3" preload="auto"></audio>
 
 <script>
 const container = document.getElementById('container');
@@ -147,9 +147,18 @@ document.getElementById('calculateGrades').addEventListener('click', () => {
   resultContainer.textContent = "GWA Result: " + result;
 
   if (result < 2 && result > 0) {
+    // Play alert sound for low grades
     const sound = document.getElementById('alertSound');
     sound.play();
-}
+  } else if (result > 0) {
+    // Play different sound for other valid results
+    const sound2 = document.getElementById('alertSound2');
+    sound2.play();
+  }
+
+
+
+    
 
 });
 
@@ -178,4 +187,5 @@ document.getElementById('calculateGrades').addEventListener('click', () => {
 
 
 </body>
+
 </html>
