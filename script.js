@@ -65,6 +65,7 @@ function updateAllMainSelects() {
 
   updateTotalUnits();
   updateTotalUnitsEntered();
+  document.getElementById("resultContainer").textContent = "GWA Result: __";
 }
 
 // ================================
