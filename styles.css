@@ -56,6 +56,7 @@ body {
     box-sizing: border-box;
     justify-content: center;
     align-items: center;
+    height: 3rem;
 }
 
 /* ===================== Container ===================== */
@@ -206,5 +207,5 @@ select {
 
 #studentInfo {
         
-        height: 200px;
+        height: 250px;
     }}
