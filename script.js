@@ -274,7 +274,7 @@ function updateTotalUnitsEntered() {
   });
   document.getElementById(
     "unitEnteredContainer"
-  ).textContent = `Units Entered: ${total}`;
+  ).textContent = `Units Occupied: ${total}`;
 }
 
 // ================================
