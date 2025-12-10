@@ -297,8 +297,17 @@ function updateGWAResult() {
     "resultContainer"
   ).textContent = `GWA Result: ${result}`;
 
-  if (result > 0 && result < 2) document.getElementById("alertSound").play();
-  else if (result > 0) document.getElementById("alertSound2").play();
+const numericResult = parseFloat(result);
+
+if (numericResult >= 1 && numericResult < 1.5) {
+    document.getElementById("alertSound1").play();  // 1.0 - 1.49
+} else if (numericResult >= 1.5 && numericResult < 2.0) {
+    document.getElementById("alertSound2").play();  // 1.5 - 1.99
+} else if (numericResult >= 2.0 && numericResult < 2.5) {
+    document.getElementById("alertSound3").play();  // 2.0 - 2.49
+} else if (numericResult >= 2.5) {
+    document.getElementById("alertSound4").play();  // 2.5 and above
+}
 }
 
 // ================================
