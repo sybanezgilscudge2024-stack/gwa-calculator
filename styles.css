@@ -42,6 +42,7 @@ body {
     width: 80%;
     box-sizing: border-box;
     min-height: 50px;   /* allows it to shrink if content is small */
+    height: auto;
 }
 
 
