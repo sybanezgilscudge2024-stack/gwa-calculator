@@ -170,6 +170,11 @@ document.getElementById("loadSubjectsBtn").addEventListener("click", () => {
 
   document.querySelectorAll(".main-group").forEach(g => g.remove());
   subjects.forEach(s => createMainGroup(s.name, s.units));
+
+
+    // 🔥 Disable placeholder permanently after choosing a subject
+
+  
 });
 
 // ================================
@@ -187,8 +192,15 @@ function createMainGroup(subjectName = "", defaultUnits = "") {
   getFilteredSubjects().forEach(s =>
 
     mainSelect.appendChild(new Option(s.name, s.name, false, s.name === subjectName))
+    
+
+
   );
 
+if (mainSelect.value !== "") {
+        mainSelect.options[0].disabled = true;
+    }
+    
   // GRADE SELECT
   const gradeSelect = document.createElement("select");
   gradeSelect.appendChild(new Option("Enter Grade", "", true, true));
@@ -230,6 +242,8 @@ function createMainGroup(subjectName = "", defaultUnits = "") {
   unitSelect.addEventListener("change", () => {
     updateTotalUnits();
     updateTotalUnitsEntered();
+
+
 });
 
 
@@ -237,13 +251,20 @@ function createMainGroup(subjectName = "", defaultUnits = "") {
 
 
 
-  mainSelect.addEventListener("change", () => {
+mainSelect.addEventListener("change", () => {
     const subjectData = getFilteredSubjects().find(s => s.name === mainSelect.value);
     unitSelect.value = subjectData ? subjectData.units : "";
+
+    // 🔥 Disable placeholder permanently after choosing a subject
+    if (mainSelect.value !== "") {
+        mainSelect.options[0].disabled = true;
+    }
+
     updateTotalUnits();
     updateTotalUnitsEntered();
     document.getElementById("resultContainer").textContent = "GWA Result: __";
-  });
+});
+
 
   updateTotalUnits();
 }

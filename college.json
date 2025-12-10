@@ -21,7 +21,7 @@
   "ITCC47": { "name": "Computer Architecture", "units": 3 },
   "ITCC48": { "name": "Fundamentals of Networking", "units": 3 },
   "ITCC49": { "name": "Web Systems and Technologies 1", "units": 3 },
-  "GEE21": { "name": "Environmental Science", "units": 3 },
+  "GEE11": { "name": "Environmental Science", "units": 3 },
   "GEC17": { "name": "Science Technology & Society", "units": 3 },
   "PE33": { "name": "PATH-Fit 3", "units": 2 },
 
