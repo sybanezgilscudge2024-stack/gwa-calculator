@@ -42,7 +42,7 @@ body {
     width: 80%;
     box-sizing: border-box;
     min-height: 50px;   /* allows it to shrink if content is small */
-    
+    height: auto;
 }
 
 
@@ -198,7 +198,7 @@ select {
 }
     #studentInfo {
         
-        height: 8rem;
+        height: auto;
     }
 
 }
@@ -207,5 +207,5 @@ select {
 
 #studentInfo {
         
-        height: 250px;
+        height: auto;
     }}
