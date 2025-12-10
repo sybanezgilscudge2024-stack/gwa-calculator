@@ -299,7 +299,7 @@ function updateGWAResult() {
     }
   });
 
-  const result = totalUnits === 0 ? 0 : (totalWeighted / totalUnits).toFixed(2);
+  const result = totalUnits === 0 ? 0 : (totalWeighted / totalUnits).toFixed(3);
 
   document.getElementById("resultContainer").textContent = `GWA Result: ${result}`;
 
