@@ -12,6 +12,7 @@ body {
     margin: 0;               /* removes default body margin */
     overflow-y: auto;
     gap: 20px;
+    margin-bottom: 300px;
 }
 
 
@@ -241,7 +242,7 @@ padding: 0.5%;
     color: white;
 
     position: absolute;
-    bottom: -150px;
+    bottom: -550px;
 
 
     font-size: 14px;
