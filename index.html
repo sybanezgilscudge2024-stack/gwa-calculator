@@ -16,15 +16,15 @@
 <!-- STUDENT INFO SELECTION -->
 <!-- ======================= -->
 <div id="studentInfo">
-    <select id="collegeSelect">
+    <select class = "select-style" id="collegeSelect">
         <option value="">-- Select College --</option>
     </select>
 
-    <select id="yearSelect" disabled>
+    <select class = "select-style" id="yearSelect" disabled>
         <option value="">-- Select Year --</option>
     </select>
 
-    <select id="semSelect" disabled>
+    <select class = "select-style" id="semSelect" disabled>
         <option value="">-- Select Semester --</option>
     </select>
 
@@ -40,7 +40,9 @@
         <button class="btn" id="calculateGrades">Calculate</button>
     </div>
 
+    <div id="unitContainer">Total Units: 0</div>
     <div id="resultContainer">GWA Result: __</div>
+
 </div>
 
 <audio id="alertSound" src="assets/sounds/paldo.mp3" preload="auto"></audio>
@@ -174,6 +176,59 @@ document.getElementById("loadSubjectsBtn").addEventListener("click", () => {
 // ================================
 const container = document.getElementById('container');
 
+// Update total units dynamically
+function updateTotalUnits() {
+    const groups = document.querySelectorAll('.main-group');
+    let totalUnits = 0;
+
+    groups.forEach(group => {
+        const selects = group.querySelectorAll("select");
+        const grade = parseFloat(selects[1].value); // Grade dropdown
+        const units = parseFloat(selects[2].value); // Units dropdown
+
+        if (!isNaN(grade) && !isNaN(units)) {
+            totalUnits += units;
+        }
+    });
+
+    document.getElementById("unitContainer").textContent = `Total Units: ${totalUnits}`;
+}
+
+
+
+function updateGWAResult() {
+    const groups = document.querySelectorAll('.main-group');
+    let totalUnits = 0;
+    let totalWeighted = 0;
+
+    groups.forEach(group => {
+        const selects = group.querySelectorAll("select");
+        const grade = parseFloat(selects[1].value);
+        const units = parseFloat(selects[2].value);
+
+        if (!isNaN(grade) && !isNaN(units)) {
+            totalUnits += units;
+            totalWeighted += grade * units;
+        }
+    });
+
+    const result = totalUnits === 0 ? 0 : (totalWeighted / totalUnits).toFixed(2);
+
+    const resultContainer = document.getElementById("resultContainer");
+    resultContainer.textContent = `GWA Result: ${result} | Total Units: ${totalUnits}`;
+
+    if (result < 2 && result > 0) document.getElementById('alertSound').play();
+    else if (result > 0) document.getElementById('alertSound2').play();
+}
+
+// Attach listener to grade selects whenever a new main group is created
+function attachGradeListener(selectElement) {
+    selectElement.addEventListener('change', updateTotalUnits);
+}
+
+
+
+// Update createMainGroup to attach the listener
 function createMainGroup(subjectName = "", defaultUnits = 3) {
     const groupDiv = document.createElement('div');
     groupDiv.className = 'main-group';
@@ -185,7 +240,7 @@ function createMainGroup(subjectName = "", defaultUnits = 3) {
     defaultOption.textContent = "--Select subject--";
     mainSelect.appendChild(defaultOption);
 
-    // Populate with all subjects from all colleges
+    // Populate all subjects
     const allSubjects = Object.values(subjectDB).flatMap(col =>
         Object.values(col).flat()
     );
@@ -213,6 +268,9 @@ function createMainGroup(subjectName = "", defaultUnits = 3) {
         inputSelect.appendChild(opt);
     });
 
+    // Attach dynamic listener
+    attachGradeListener(inputSelect);
+
     // Unit dropdown
     const unitSelect = document.createElement('select');
     [2,3].forEach(u => {
@@ -227,12 +285,16 @@ function createMainGroup(subjectName = "", defaultUnits = 3) {
     mainSelect.addEventListener('change', () => {
         if (mainSelect.value.includes("PATH-Fit")) unitSelect.value = 2;
         else unitSelect.value = 3;
+        updateTotalUnits(); // Update when unit changes automatically
     });
 
     // Delete button
     const delBtn = document.createElement('button');
     delBtn.textContent = "Delete";
-    delBtn.onclick = () => groupDiv.remove();
+    delBtn.onclick = () => {
+        groupDiv.remove();
+        updateTotalUnits(); // Update when a subject is deleted
+    };
 
     groupDiv.appendChild(mainSelect);
     groupDiv.appendChild(inputSelect);
@@ -240,8 +302,10 @@ function createMainGroup(subjectName = "", defaultUnits = 3) {
     groupDiv.appendChild(delBtn);
 
     container.appendChild(groupDiv);
-}
 
+    // Update GWA result after adding a new group
+    updateTotalUnits();
+}
 // ================================
 // MANUAL ADD BUTTON
 // ================================

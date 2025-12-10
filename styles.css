@@ -143,6 +143,13 @@ input {
     color: white;
 }
 
+#unitContainer {
+    margin-top: 1rem; 
+    font-weight: bold; 
+    font-size: 1.2rem;
+    color: white;
+}
+
 
 
 
@@ -165,6 +172,20 @@ select {
               border-color .15s ease-in-out,
               box-shadow .15s ease-in-out;
 }
+
+.select-style {
+padding: 0.5%;
+  border-radius: 0.575rem;     /* default radius */
+  transition: color .15s ease-in-out,
+              background-color .15s ease-in-out,
+              border-color .15s ease-in-out,
+              box-shadow .15s ease-in-out;
+}
+
+
+
+
+
 
 .custom-footer {
     width: 100%;
