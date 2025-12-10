@@ -1,11 +1,15 @@
 let subjectDB = {};
 
+console.log("Entered")
 // Fetch JSON file
 fetch('college.json')
-  .then(res => res.json())
+  .then(res => {
+      console.log('Fetch response:', res);
+      return res.json();
+  })
   .then(data => {
+      console.log('JSON data:', data);
       subjectDB = data;
-      
       populateCollegeSelect();
   })
   .catch(err => console.error("Error loading subjects:", err));
