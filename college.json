@@ -1,0 +1,33 @@
+{
+  "CISC": {
+    "1-1": [
+      { "code": "ITCC41", "name": "Computer Programming 1", "units": 3 },
+      { "code": "ITCC43", "name": "Introduction to Computing", "units": 3 },
+      { "code": "GEC 11", "name": "Understanding the Self", "units": 3 },
+      { "code": "GEC 14", "name": "Mathematics in the Modern World", "units": 3 },
+      { "code": "GEC 15", "name": "Purposive Communication", "units": 3 },
+      { "code": "PE31", "name": "Physical Activities Towards Health and Fitness I (PATH-Fit I): Movement Competency Training", "units": 2 },
+      { "code": "GEC 18", "name": "Ethics", "units": 3 }
+    ],
+    "1-2": [
+      { "code": "ITCC42", "name": "Discrete Structures", "units": 3 },
+      { "code": "ITCC44", "name": "Computer Programming 2", "units": 3 },
+      { "code": "GEC 13", "name": "The Contemporary World", "units": 3 },
+      { "code": "GEC 12", "name": "Readings in Philippine History", "units": 3 },
+      { "code": "GEC 16", "name": "Art Appreciation", "units": 3 },
+      { "code": "GEE 16", "name": "The Entrepreneurial Mind", "units": 3 },
+      { "code": "GEC 19", "name": "The Life and Works of Jose Rizal", "units": 3 },
+      { "code": "PE32", "name": "Physical Activities Towards Health and Fitness 2 (PATH-Fit 2): Exercise-based Fitness Activities", "units": 2 }
+    ],
+    "2-1": [
+      { "name": "Computer Programming 3", "units": 3 },
+      { "name": "Data Structures and Algorithms", "units": 3 },
+      { "name": "Computer Architecture", "units": 3 },
+      { "name": "Fundamentals of Networking", "units": 3 },
+      { "name": "Web Systems and Technologies 1", "units": 3 },
+      { "name": "Environmental Science", "units": 3 },
+      { "name": "Science Technology & Society", "units": 3 },
+      { "name": "PATH-Fit 3", "units": 2 }
+    ]
+  }
+}

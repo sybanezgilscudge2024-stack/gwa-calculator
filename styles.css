@@ -11,6 +11,7 @@ body {
     height: 120vh;           /* makes flexbox work full-screen */
     margin: 0;               /* removes default body margin */
     overflow-y: auto;
+    gap: 20px;
 }
 
 
@@ -63,11 +64,12 @@ body {
 
 
 
-
 .buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: flex;          /* regular flex container */
+    flex-wrap: wrap;        /* allow buttons to wrap */
+    justify-content: center; 
+    gap: 10px;              /* spacing between buttons */
+    width: 100%;            /* grow with parent */
 }
 
 /* Each main group in a row */
@@ -95,6 +97,20 @@ body {
     box-sizing: border-box;
 }
 
+.main-group select:first-child {
+    flex: 1 1 auto;   /* grow and shrink as needed */
+    min-width: 100px; /* never shrink below 150px */
+}
+
+.main-group select:nth-child(2),
+.main-group select:nth-child(3) {
+    flex: 1 1 auto;      /* allow to grow and shrink */
+    max-width: 20%;    /* will not grow beyond 100px */
+    min-width: 20%;     /* optional: prevent shrinking too small */
+}
+
+
+
 /* Delete button fixed size */
 .main-group button {
     flex: 0 0 auto;        /* Do not shrink */
@@ -113,28 +129,50 @@ input {
 }
 
 /* Add Dropdown button styling */
-#addDropdownBtn {
-    width: 200px;
+#addDropdownBtn,
+#calculateGrades {
+    min-width: 100px;   /* minimum width when shrinking */
+    max-width: 200px;   /* maximum/base width */
+    width: 100%;        /* allows flex to control width */
     height: 50px;
+    flex: 1 1 auto;     /* flex-grow:1, flex-shrink:1, flex-basis:auto */
 }
 
-#calculateGrades {
-    width: 200px;
-    height: 50px;
-}
 
 /* Responsive for small screens */
-@media (max-width: 500px) {
+@media (max-width: 768px) {
     .main-group {
         flex-direction: column;
-        align-items: stretch;
+        align-items: center;
     }
 
     .main-group button {
         width: 100%;
     }
+    .main-group select:first-child {
+    flex: 1 1 auto;   /* grow and shrink as needed */
+    width: 100%;
 }
 
+
+
+
+.main-group select:nth-child(2),
+.main-group select:nth-child(3) {
+    flex: 1 1 auto;      /* allow to grow and shrink */
+    max-width: none;    /* will not grow beyond 100px */
+    min-width: none;     /* optional: prevent shrinking too small */
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+}
 
 #resultContainer {
     margin-top: 1rem; 
