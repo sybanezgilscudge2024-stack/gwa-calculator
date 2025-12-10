@@ -39,11 +39,12 @@ body {
 
 /* Container fixed on screen */
 #container {
-    border: 2px solid rgb(255, 255, 255); 
-    position: absolute;         
-    top: 20%;                   /* Fixed top position */
-    left: 50%;
-    transform: translateX(-50%);
+    border-radius: 0.575rem;
+    border: 2px solid rgb(141, 141, 141); 
+    /* position: absolute;          */
+    /* top: 20%;                    */
+    /* left: 50%; */
+    /* transform: translateX(-50%); */
     
     display: flex;
     flex-direction: column;     /* Stack children vertically */
@@ -54,7 +55,7 @@ body {
     flex-shrink: 1;             
     box-sizing: border-box;
     
-    max-height: calc(100vh - 20% - 20px);  /* Allow growth downward but leave 20px gap at bottom */
+    height: calc(100vh - 20% - 20px);  /* Allow growth downward but leave 20px gap at bottom */
     overflow-y: auto;                       /* Scroll if content exceeds container */
     
     padding-bottom: 20px;       /* Extra space at the bottom */
@@ -181,3 +182,30 @@ select {
 
     backdrop-filter: blur(5px); /* subtle frosted effect */
 }
+
+#studentInfo {
+    border-radius: 0.575rem;
+    display: flex;
+    flex-wrap: wrap;             /* Allow wrapping on smaller screens */
+    justify-content: center;     /* Center items horizontally */
+    gap: 10px;                   /* Space between selects/buttons */
+    /* position: absolute;          Use relative for responsive positioning */
+    top: 100px;
+    border: 2px solid rgb(141, 141, 141);
+    padding: 10px;
+    width: 80%;                  /* Responsive width relative to parent */
+            /* Prevent it from being too wide on large screens */
+    margin: 0 auto;              /* Center container horizontally */
+    box-sizing: border-box;      /* Include padding in width */
+    max-height: 20%;
+}
+
+#studentInfo select,
+#studentInfo button {
+    flex: 1 1 150px;             /* Flexible items, min width 150px */
+    max-width: 350px;            /* Prevent them from being too wide */
+    min-width: 120px;            /* Prevent items from shrinking too much */
+    box-sizing: border-box;
+}
+
+

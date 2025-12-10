@@ -1,27 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>GWA Calculator</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GWA Calculator</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class = "label-container">
-        <label>GWA Calculator!</label>
+
+<div class="label-container">
+    <label>GWA Calculator!</label>
+</div>
+
+<!-- ======================= -->
+<!-- STUDENT INFO SELECTION -->
+<!-- ======================= -->
+<div id="studentInfo">
+    <select id="collegeSelect">
+        <option value="">-- Select College --</option>
+    </select>
+
+    <select id="yearSelect" disabled>
+        <option value="">-- Select Year --</option>
+    </select>
+
+    <select id="semSelect" disabled>
+        <option value="">-- Select Semester --</option>
+    </select>
+
+    <button id="loadSubjectsBtn" class="btn">Load Subjects</button>
+</div>
+
+<!-- ======================= -->
+<!-- MAIN CONTAINER -->
+<!-- ======================= -->
+<div id="container">
+    <div class="buttons">
+        <button class="btn" id="addDropdownBtn">Add Another Subject</button>
+        <button class="btn" id="calculateGrades">Calculate</button>
     </div>
 
-    
-<div id="container">
-<div class = "buttons">
-<button class = "btn" id="addDropdownBtn">Add Another Subject</button>
-<button class = "btn" id="calculateGrades">Calculate</button>
-</div>
-<div id="resultContainer">GWA Result: __</div>
+    <div id="resultContainer">GWA Result: __</div>
 </div>
 
-
-</div>
 <audio id="alertSound" src="assets/sounds/paldo.mp3" preload="auto"></audio>
 <audio id="alertSound2" src="assets/sounds/congrats.mp3" preload="auto"></audio>
 
@@ -29,180 +50,234 @@
     <p>© 2025 Gil Scudge B. Ybañez — All Rights Reserved</p>
 </footer>
 
-
-
-
-
 <script>
-const container = document.getElementById('container');
-const addDropdownBtn = document.getElementById('addDropdownBtn');
 
-// Options for the main dropdown
-const mainOptions = [
-  "Computer Programming 3",
-  "Data Structures and Algorithms",
-  "Computer Architecture",
-  "Fundamentals of Networking",
-  "Web Systems and Technologies 1",
-  "Science, Technology and Society",
-  "Environmental Science",
-  "PATH-Fit 3"
-];
-
-// Options for the input dropdown
-const inputOptions = [1.00, 1.25, 1.50, 1.75, 2.00, 2.25, 2.50, 2.75, 3.00, 4.00, 5.00];
-
-// Options for the new 3/2 dropdown
-const threeTwoOptions = [3, 2];
-
-
-
-function createMainGroup() {
-  const groupDiv = document.createElement('div');
-  groupDiv.className = 'main-group';
-
-  // Main dropdown
-  const mainSelect = document.createElement('select');
-  const defaultOption = document.createElement('option');
-  defaultOption.value = "";
-  defaultOption.textContent = "--Select subject--";
-  mainSelect.appendChild(defaultOption);
-
-  mainOptions.forEach(opt => {
-    const option = document.createElement('option');
-    option.value = opt;
-    option.textContent = opt;
-    mainSelect.appendChild(option);
-  });
-
-  // Grade dropdown
-  const inputSelect = document.createElement('select');
-  const gradePlaceholder = document.createElement('option');
-  gradePlaceholder.value = "";
-  gradePlaceholder.textContent = "Enter Grade";
-  gradePlaceholder.disabled = true;
-  gradePlaceholder.selected = true;
-  inputSelect.appendChild(gradePlaceholder);
-
-  inputOptions.forEach(opt => {
-    const option = document.createElement('option');
-    option.value = opt;
-    option.textContent = opt;
-    inputSelect.appendChild(option);
-  });
-
-  // Unit dropdown (2/3)
-  const threeTwoSelect = document.createElement('select');
-  threeTwoOptions.forEach(opt => {
-    const option = document.createElement('option');
-    option.value = opt;
-    option.textContent = opt;
-    if (opt === 3) option.selected = true;
-    threeTwoSelect.appendChild(option);
-  });
-
-  // Auto-set units to 2 when PATH-Fit is selected
-  mainSelect.addEventListener("change", () => {
-    if (mainSelect.value.includes("PATH-Fit 3")) {
-      threeTwoSelect.value = 2;
-    } else {
-      threeTwoSelect.value = 3;
+// ================================
+// SUBJECT DATABASE
+// ================================
+const subjectDB = {
+    CISC: {
+        "1-1" : [
+          { code: "ITCC41", name: "Computer Programming 1", units: 3 },
+          { code: "ITCC43", name: "Introduction to Computing", units: 3 },
+          { code: "GEC 11", name: "Understanding the Self", units: 3 },
+          { code: "GEC 14", name: "Mathematics in the Modern World", units: 3 },
+          { code: "GEC 15", name: "Purposive Communication", units: 3 },
+          { code: "PE31", name: "Physical Activities Towards Health and Fitness I (PATH-Fit I): Movement Competency Training", units: 2 },
+          { code: "GEC 18", name: "Ethics", units: 3 }
+        ],
+        "1-2" : [
+          { code: "ITCC42", name: "Discrete Structures", units: 3 },
+          { code: "ITCC44", name: "Computer Programming 2", units: 3 },
+          { code: "GEC 13", name: "The Contemporary World", units: 3 },
+          { code: "GEC 12", name: "Readings in Philippine History", units: 3 },
+          { code: "GEC 16", name: "Art Appreciation", units: 3 },
+          { code: "GEE 16", name: "The Entrepreneurial Mind", units: 3 },
+          { code: "GEC 19", name: "The Life and Works of Jose Rizal", units: 3 },
+          { code: "PE32", name: "Physical Activities Towards Health and Fitness 2 (PATH-Fit 2): Exercise-based Fitness Activities", units: 2 }
+        ],
+        "2-1": [
+            { name: "Computer Programming 3", units: 3 },
+            { name: "Data Structures and Algorithms", units: 3 },
+            { name: "Computer Architecture", units: 3 },
+            { name: "Fundamentals of Networking", units: 3 },
+            { name: "Web Systems and Technologies 1", units: 3 },
+            { name: "Environmental Science", units: 3 },
+            { name: "Science Technology & Society", units: 3 },
+            { name: "PATH-Fit 3", units: 2 }
+        ]
     }
-  });
+};
 
-  // Delete button
-  const deleteBtn = document.createElement('button');
-  deleteBtn.textContent = 'Delete';
-  deleteBtn.addEventListener('click', () => groupDiv.remove());
-
-  // Append everything
-  groupDiv.appendChild(mainSelect);
-  groupDiv.appendChild(inputSelect);
-  groupDiv.appendChild(threeTwoSelect);
-  groupDiv.appendChild(deleteBtn);
-
-  container.appendChild(groupDiv);
+// ================================
+// POPULATE COLLEGE OPTIONS
+// ================================
+function populateCollegeSelect() {
+    const collegeSelect = document.getElementById("collegeSelect");
+    collegeSelect.innerHTML = `<option value="">-- Select College --</option>`;
+    Object.keys(subjectDB).forEach(college => {
+        const opt = document.createElement("option");
+        opt.value = college;
+        opt.textContent = college;
+        collegeSelect.appendChild(opt);
+    });
+    document.getElementById("yearSelect").disabled = true;
+    document.getElementById("semSelect").disabled = true;
 }
 
+populateCollegeSelect();
 
-// Add initial main dropdown
-createMainGroup();
+// ================================
+// COLLEGE → YEAR → SEM SELECT
+// ================================
+document.getElementById("collegeSelect").addEventListener("change", () => {
+    const college = document.getElementById("collegeSelect").value;
+    const yearSelect = document.getElementById("yearSelect");
+    yearSelect.innerHTML = `<option value="">-- Select Year --</option>`;
+    document.getElementById("semSelect").innerHTML = `<option value="">-- Select Semester --</option>`;
+    document.getElementById("semSelect").disabled = true;
 
-// Add more main dropdowns
-addDropdownBtn.addEventListener('click', () => createMainGroup());
+    if (!college) { yearSelect.disabled = true; return; }
 
-
-
-// Function to calculate the weighted average dynamically
-function calculateWeightedAverage() {
-  const groups = document.querySelectorAll('.main-group'); // all main groups
-  let totalWeightedGrades = 0; // sum of (grade * units)
-  let totalUnits = 0;          // sum of units
-
-  groups.forEach(group => {
-    // Get the grade and unit dropdowns dynamically
-    const selects = group.querySelectorAll('select');
-    const gradeSelect = selects[1]; // second select: grade
-    const unitSelect = selects[2];  // third select: units
-
-    const grade = parseFloat(gradeSelect.value);
-    const units = parseFloat(unitSelect.value);
-
-    // Only add if both grade and units are valid numbers
-    if (!isNaN(grade) && !isNaN(units)) {
-      totalWeightedGrades += grade * units;
-      totalUnits += units;
-    }
-  });
-
-  // Avoid division by zero
-  if (totalUnits === 0) return 0;
-  console.log("Process")
-  const weightedAverage = totalWeightedGrades / totalUnits;
-  return weightedAverage.toFixed(2); // return 2 decimals
-}
-
-// Attach to the "Calculate" button
-document.getElementById('calculateGrades').addEventListener('click', () => {
-  const result = calculateWeightedAverage();
-  const resultContainer = document.getElementById('resultContainer');
-  resultContainer.textContent = "GWA Result: " + result;
-
-if (result < 2 && result > 0) {
-    // Play alert sound for low grades
-    const sound = document.getElementById('alertSound');
-    sound.play();
-  } else if (result > 0) {
-    // Play different sound for other valid results
-    const sound2 = document.getElementById('alertSound2');
-    sound2.play();
-  }
-
+    const years = new Set(Object.keys(subjectDB[college]).map(k => k.split("-")[0]));
+    years.forEach(y => {
+        const opt = document.createElement("option");
+        opt.value = y;
+        opt.textContent = `Year ${y}`;
+        yearSelect.appendChild(opt);
+    });
+    yearSelect.disabled = false;
 });
 
+document.getElementById("yearSelect").addEventListener("change", () => {
+    const college = document.getElementById("collegeSelect").value;
+    const year = document.getElementById("yearSelect").value;
+    const semSelect = document.getElementById("semSelect");
+    semSelect.innerHTML = `<option value="">-- Select Semester --</option>`;
+    if (!year) { semSelect.disabled = true; return; }
 
+    const semesters = new Set(Object.keys(subjectDB[college])
+        .filter(k => k.startsWith(year + "-"))
+        .map(k => k.split("-")[1]));
 
+    semesters.forEach(s => {
+        const opt = document.createElement("option");
+        opt.value = s;
+        opt.textContent = `Semester ${s}`;
+        semSelect.appendChild(opt);
+    });
 
+    semSelect.disabled = false;
+});
 
+// ================================
+// AUTO-LOAD SUBJECTS
+// ================================
+document.getElementById("loadSubjectsBtn").addEventListener("click", () => {
+    const college = document.getElementById("collegeSelect").value;
+    const year = document.getElementById("yearSelect").value;
+    const sem = document.getElementById("semSelect").value;
 
+    if (!college || !year || !sem) { alert("Please select College, Year, and Semester."); return; }
 
+    const subjects = subjectDB[college][`${year}-${sem}`];
+    if (!subjects) { alert("No subjects found."); return; }
 
+    // Remove existing groups except buttons and result container
+    document.querySelectorAll(".main-group").forEach(g => g.remove());
 
+    subjects.forEach(subj => createMainGroup(subj.name, subj.units));
+});
 
+// ================================
+// CREATE MAIN GROUP FUNCTION
+// ================================
+const container = document.getElementById('container');
 
+function createMainGroup(subjectName = "", defaultUnits = 3) {
+    const groupDiv = document.createElement('div');
+    groupDiv.className = 'main-group';
 
+    // Main dropdown for subject
+    const mainSelect = document.createElement('select');
+    const defaultOption = document.createElement('option');
+    defaultOption.value = "";
+    defaultOption.textContent = "--Select subject--";
+    mainSelect.appendChild(defaultOption);
 
+    // Populate with all subjects from all colleges
+    const allSubjects = Object.values(subjectDB).flatMap(col =>
+        Object.values(col).flat()
+    );
+    allSubjects.forEach(s => {
+        const opt = document.createElement('option');
+        opt.value = s.name;
+        opt.textContent = s.name;
+        if (s.name === subjectName) opt.selected = true;
+        mainSelect.appendChild(opt);
+    });
+
+    // Grade dropdown
+    const inputSelect = document.createElement('select');
+    const gradePlaceholder = document.createElement('option');
+    gradePlaceholder.value = "";
+    gradePlaceholder.textContent = "Enter Grade";
+    gradePlaceholder.disabled = true;
+    gradePlaceholder.selected = true;
+    inputSelect.appendChild(gradePlaceholder);
+
+    [1.00,1.25,1.50,1.75,2.00,2.25,2.50,2.75,3.00,4.00,5.00].forEach(g => {
+        const opt = document.createElement('option');
+        opt.value = g;
+        opt.textContent = g;
+        inputSelect.appendChild(opt);
+    });
+
+    // Unit dropdown
+    const unitSelect = document.createElement('select');
+    [2,3].forEach(u => {
+        const opt = document.createElement('option');
+        opt.value = u;
+        opt.textContent = u;
+        if (u === defaultUnits) opt.selected = true;
+        unitSelect.appendChild(opt);
+    });
+
+    // Adjust units automatically if PATH-Fit
+    mainSelect.addEventListener('change', () => {
+        if (mainSelect.value.includes("PATH-Fit")) unitSelect.value = 2;
+        else unitSelect.value = 3;
+    });
+
+    // Delete button
+    const delBtn = document.createElement('button');
+    delBtn.textContent = "Delete";
+    delBtn.onclick = () => groupDiv.remove();
+
+    groupDiv.appendChild(mainSelect);
+    groupDiv.appendChild(inputSelect);
+    groupDiv.appendChild(unitSelect);
+    groupDiv.appendChild(delBtn);
+
+    container.appendChild(groupDiv);
+}
+
+// ================================
+// MANUAL ADD BUTTON
+// ================================
+document.getElementById('addDropdownBtn').addEventListener('click', () => createMainGroup());
+
+// ================================
+// CALCULATION
+// ================================
+function calculateWeightedAverage() {
+    const groups = document.querySelectorAll('.main-group');
+    let totalUnits = 0;
+    let totalWeighted = 0;
+
+    groups.forEach(group => {
+        const selects = group.querySelectorAll("select");
+        const grade = parseFloat(selects[1].value);
+        const units = parseFloat(selects[2].value);
+
+        if (!isNaN(grade) && !isNaN(units)) {
+            totalUnits += units;
+            totalWeighted += grade * units;
+        }
+    });
+
+    if (totalUnits === 0) return 0;
+    return (totalWeighted / totalUnits).toFixed(2);
+}
+
+document.getElementById("calculateGrades").addEventListener("click", () => {
+    const result = calculateWeightedAverage();
+    document.getElementById("resultContainer").textContent = "GWA Result: " + result;
+
+    if (result < 2 && result > 0) document.getElementById('alertSound').play();
+    else if (result > 0) document.getElementById('alertSound2').play();
+});
 
 </script>
-
-
-
-
-
-
-
-
-
-
 </body>
 </html>
