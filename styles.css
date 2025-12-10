@@ -41,7 +41,6 @@ body {
     max-width: 1200px;
     width: 80%;
     box-sizing: border-box;
-    
     min-height: 50px;   /* allows it to shrink if content is small */
     
 }
@@ -49,10 +48,13 @@ body {
 
 #studentInfo select,
 #studentInfo button {
+    display: flex;
+    padding: 10px;
     flex: 1 1 150px;
     max-width: 350px;
     min-width: 120px;
     box-sizing: border-box;
+    justify-content: center;
 }
 
 /* ===================== Container ===================== */
