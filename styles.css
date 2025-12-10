@@ -38,10 +38,14 @@ body {
     gap: 10px;
     border: 2px solid rgb(141, 141, 141);
     padding: 10px;
-    width: 80%;
     max-width: 1200px;
+    width: 80%;
     box-sizing: border-box;
+    
+    min-height: 50px;   /* allows it to shrink if content is small */
+    
 }
+
 
 #studentInfo select,
 #studentInfo button {
@@ -64,7 +68,7 @@ body {
     box-sizing: border-box;
     padding: 20px;
     overflow-y: auto;
-    height: 100vh;
+    height: 1200px;
 }
 
 /* ===================== Buttons ===================== */
@@ -188,5 +192,16 @@ select {
     
     width: 100%;
 }
+    #studentInfo {
+        
+        height: 100px;
+    }
 
 }
+
+@media (max-width: 500px) {
+
+#studentInfo {
+        
+        height: 200px;
+    }}
