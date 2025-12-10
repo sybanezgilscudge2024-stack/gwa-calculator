@@ -14,7 +14,7 @@ fetch("college.json")
 // ================================
 function populateCollegeSelect() {
   const collegeSelect = document.getElementById("collegeSelect");
-  collegeSelect.innerHTML = `<option value="">-- Select College --</option>`;
+  collegeSelect.innerHTML = `<option value="">-- Select Program --</option>`;
 
   Object.keys(subjectDB).forEach(col => {
     const opt = new Option(col, col);
