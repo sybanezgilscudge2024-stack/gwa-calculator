@@ -42,7 +42,6 @@ body {
     width: 80%;
     box-sizing: border-box;
     min-height: 50px;   /* allows it to shrink if content is small */
-    height: auto;
 }
 
 
@@ -196,16 +195,6 @@ select {
     
     width: 100%;
 }
-    #studentInfo {
-        
-        height: auto;
-    }
 
 }
 
-@media (max-width: 500px) {
-
-#studentInfo {
-        
-        height: auto;
-    }}
