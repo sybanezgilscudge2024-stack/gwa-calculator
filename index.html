@@ -14,8 +14,8 @@
     
 <div id="container">
 <div class = "buttons">
-<button id="addDropdownBtn">Add Another Subject</button>
-<button id="calculateGrades">Calculate</button>
+<button class = "btn" id="addDropdownBtn">Add Another Subject</button>
+<button class = "btn" id="calculateGrades">Calculate</button>
 </div>
 <div id="resultContainer">GWA Result: __</div>
 </div>
@@ -24,6 +24,13 @@
 </div>
 <audio id="alertSound" src="assets/sounds/paldo.mp3" preload="auto"></audio>
 <audio id="alertSound2" src="assets/sounds/congrats.mp3" preload="auto"></audio>
+
+<footer class="custom-footer">
+    <p>© 2025 Gil Scudge B. Ybañez — All Rights Reserved</p>
+</footer>
+
+
+
 
 
 <script>
@@ -39,7 +46,7 @@ const mainOptions = [
   "Web Systems and Technologies 1",
   "Science, Technology and Society",
   "Environmental Science",
-  "Physical Activities Towards Health and Fitness 3 (PATH-Fit 3): Any of the Menu of Courses on Dance Sports, Martial Arts, Group Exercises, and Outdoor and Adventure Activities"
+  "PATH-Fit 3"
 ];
 
 // Options for the input dropdown
@@ -47,6 +54,8 @@ const inputOptions = [1.00, 1.25, 1.50, 1.75, 2.00, 2.25, 2.50, 2.75, 3.00, 4.00
 
 // Options for the new 3/2 dropdown
 const threeTwoOptions = [3, 2];
+
+
 
 function createMainGroup() {
   const groupDiv = document.createElement('div');
@@ -66,7 +75,7 @@ function createMainGroup() {
     mainSelect.appendChild(option);
   });
 
-  // Input dropdown (grades) with placeholder
+  // Grade dropdown
   const inputSelect = document.createElement('select');
   const gradePlaceholder = document.createElement('option');
   gradePlaceholder.value = "";
@@ -82,20 +91,31 @@ function createMainGroup() {
     inputSelect.appendChild(option);
   });
 
-  // New 3/2 dropdown (units) with placeholder
-const threeTwoSelect = document.createElement('select');
-threeTwoOptions.forEach(opt => {
-  const option = document.createElement('option');
-  option.value = opt;
-  option.textContent = opt;
-  if (opt === 3) option.selected = true; // default to 3
-  threeTwoSelect.appendChild(option);
+  // Unit dropdown (2/3)
+  const threeTwoSelect = document.createElement('select');
+  threeTwoOptions.forEach(opt => {
+    const option = document.createElement('option');
+    option.value = opt;
+    option.textContent = opt;
+    if (opt === 3) option.selected = true;
+    threeTwoSelect.appendChild(option);
   });
+
+  // Auto-set units to 2 when PATH-Fit is selected
+  mainSelect.addEventListener("change", () => {
+    if (mainSelect.value.includes("PATH-Fit 3")) {
+      threeTwoSelect.value = 2;
+    } else {
+      threeTwoSelect.value = 3;
+    }
+  });
+
   // Delete button
   const deleteBtn = document.createElement('button');
   deleteBtn.textContent = 'Delete';
   deleteBtn.addEventListener('click', () => groupDiv.remove());
-  // Append elements
+
+  // Append everything
   groupDiv.appendChild(mainSelect);
   groupDiv.appendChild(inputSelect);
   groupDiv.appendChild(threeTwoSelect);
@@ -103,6 +123,7 @@ threeTwoOptions.forEach(opt => {
 
   container.appendChild(groupDiv);
 }
+
 
 // Add initial main dropdown
 createMainGroup();
