@@ -1,13 +1,3 @@
-let subjectDB = {};
-
-// Fetch JSON file
-fetch("college.json")
-  .then((res) => res.json())
-  .then((data) => {
-    subjectDB = data;
-    populateCollegeSelect();
-  })
-  .catch((err) => console.error("Error loading subjects:", err));
 
 // ================================
 // Populate college select
@@ -195,6 +185,7 @@ function createMainGroup(subjectName = "", defaultUnits = "") {
   const mainSelect = document.createElement("select");
   mainSelect.appendChild(new Option("--Select subject--", "", true, true));
   getFilteredSubjects().forEach(s =>
+
     mainSelect.appendChild(new Option(s.name, s.name, false, s.name === subjectName))
   );
 
