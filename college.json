@@ -1,5 +1,5 @@
 {
-  "CISC": {
+  "BSIT": {
     "1-1": [
       { "code": "ITCC41", "name": "Computer Programming 1", "units": 3 },
       { "code": "ITCC43", "name": "Introduction to Computing", "units": 3 },
@@ -29,14 +29,22 @@
       { "name": "Science Technology & Society", "units": 3 },
       { "name": "PATH-Fit 3", "units": 2 }
     ]
+  },
+  
+    "BSBio":{
+        "1-1": [
+      { "code": "ITCC41", "name": "Computer Programming 1", "units": 3 },
+      { "code": "ITCC43", "name": "Introduction to Computing", "units": 3 },
+      { "code": "GEC 11", "name": "Understanding the Self", "units": 3 },
+      { "code": "GEC 14", "name": "Mathematics in the Modern World", "units": 3 },
+      { "code": "GEC 15", "name": "Purposive Communication", "units": 3 },
+      { "code": "PE31", "name": "Physical Activities Towards Health and Fitness I (PATH-Fit I): Movement Competency Training", "units": 2 },
+      { "code": "GEC 18", "name": "Ethics", "units": 3 }
+    ]
+    }
 
 
 
 
 
-
-
-
-    
-  }
 }
