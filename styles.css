@@ -55,6 +55,7 @@ body {
     min-width: 120px;
     box-sizing: border-box;
     justify-content: center;
+    align-items: center;
 }
 
 /* ===================== Container ===================== */
