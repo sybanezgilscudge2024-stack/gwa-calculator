@@ -1,3 +1,4 @@
+
 /* ===================== Body ===================== */
 body {
     background: radial-gradient(circle at top right, rgb(65, 65, 65), rgb(0, 0, 0));
@@ -97,8 +98,99 @@ body {
 }
 
 
-.btn { border-radius: 0.575rem; /* default radius */ 
-    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out; }
+
+
+
+
+
+button {
+    border-radius: 0.575rem !important;
+    padding: 0.5rem 1rem;
+    background-color: white;  /* default white */
+    color: black;             /* text color */
+    border: 1px solid #888;   /* subtle border */
+    cursor: pointer;
+
+    transition: color .15s ease-in-out,
+                background-color .15s ease-in-out,
+                border-color .15s ease-in-out,
+                box-shadow .15s ease-in-out !important;
+}
+
+button:hover {
+    background-color: #a5a5a5;  /* light gray hover */
+}
+
+button:active {
+    background-color: #e0e0e0;  /* slightly darker */
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2); /* subtle focus ring */
+}
+
+
+
+
+
+
+
+
+
+.select-style {
+    border-radius: 0.575rem !important;   /* rounded corners */
+    padding: 0.5rem 1rem;
+    background-color: white;              /* default white */
+    color: black;                         /* text color */
+    border: 1px solid #888;               /* subtle border */
+    cursor: pointer;
+    appearance: none;                      /* remove default arrow for styling */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    transition: color .15s ease-in-out,
+                background-color .15s ease-in-out,
+                border-color .15s ease-in-out,
+                box-shadow .15s ease-in-out !important;
+}
+
+.select-style:hover {
+    background-color: #a5a5a5;            /* light gray hover */
+}
+
+.select-style:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2); /* subtle focus ring */
+}
+
+/* Optional: add a custom arrow using pseudo-element */
+.select-style::after {
+    content: "▼";
+    position: absolute;
+    right: 1rem;
+    pointer-events: none;
+    color: #555;
+}
+
+.select-style option {
+    background-color: #f5f5f5; /* light gray background */
+    color: #333;               /* dark gray text */
+}
+
+/* Optional: hover inside dropdown (not supported in all browsers) */
+.select-style option:hover {
+    background-color: #dcdcdc; /* slightly darker gray on hover */
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -119,26 +211,28 @@ body {
 .main-group select {
     flex: 1;
     min-width: 50px;
-    padding: 0.3rem;
+    padding: 0.5rem 1rem;
     border: 1px solid #888;
-    border-radius: 4px;
+    border-radius: 0.575rem !important; 
     box-sizing: border-box;
+    height: 50px;
 }
 
 .main-group select:nth-child(2),
 .main-group select:nth-child(3) {
     flex: 1;
-    max-width: 100px;
-    min-width: 50px;
+    max-width: 120px;
+    min-width: 80px;
 }
 
 .main-group button {
     flex: 0 0 auto;
-    padding: 0.3rem 0.5rem;
+    padding: 0.5rem 1rem;
     border: 1px solid #888;
-    border-radius: 4px;
+    border-radius: 0.575rem !important; 
     background-color: #f0f0f0;
     cursor: pointer;
+    height: 50px;
 }
 
 /* ===================== Units and Result ===================== */
@@ -185,7 +279,11 @@ select {
 
     .main-group select,
     .main-group button {
+        flex: none;
+        max-width: none;
+        min-width: none;
         width: 100%;
+        height: 50px;
     
     }
     .main-group select:nth-child(2),
