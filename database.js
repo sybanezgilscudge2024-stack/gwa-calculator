@@ -30,21 +30,65 @@ fetch("college.json")
         subjectCode["GEC19"],
         subjectCode["PE32"]
         ],
-        "2-1": [
+      
+    "2-1": [
         subjectCode["ITCC45"],
-        subjectCode["ITCC46"],
         subjectCode["ITCC47"],
-        subjectCode["ITCC48"],
-        subjectCode["ITCC49"],
+        subjectCode["IT51"],
+        subjectCode["IT53"],
+        subjectCode["IT55"],
         subjectCode["GEE11"],
         subjectCode["GEC17"],
         subjectCode["PE33"]
-        ],
-        "2-2": [],
-        "3-1": [],
-        "3-2": [],
-        "4-1": [],
-        "4-2": []
+    ],
+
+    "2-2": [
+        subjectCode["ITCC46"],
+        subjectCode["ITCC48"],
+        subjectCode["IT52"],
+        subjectCode["IT54"],
+        subjectCode["IT56"],
+        subjectCode["STAT22"],
+        subjectCode["GEE15"],
+        subjectCode["PE34"]
+    ],
+
+    "3-1": [
+        subjectCode["IT57"],
+        subjectCode["IT59"],
+        subjectCode["IT61"],
+        subjectCode["IT63"],
+        subjectCode["IT95"],
+        subjectCode["IT_ELECT1"],
+        subjectCode["IT_ELECT2"]
+    ],
+
+    "3-2": [
+        subjectCode["IT58"],
+        subjectCode["IT60"],
+        subjectCode["IT99"],
+        subjectCode["IT100_1"],
+        subjectCode["IT62"],
+        subjectCode["IT_ELECT3"],
+        subjectCode["IT_ELECT4"]
+    ],
+
+    "4-1": [
+        subjectCode["IT65"],
+        subjectCode["IT67"],
+        subjectCode["IT69"],
+        subjectCode["IT71"],
+        subjectCode["IT73"],
+        subjectCode["IT100_2"],
+        subjectCode["IT_ELECT5"]
+    ],
+
+    "4-2": [
+        subjectCode["IT98"],
+        subjectCode["ADD101"]
+    ]
+
+
     },
 
 

@@ -17,19 +17,78 @@
     "PE32": { "name": "Physical Activities Towards Health and Fitness 2 (PATH-Fit 2)", "units": 2 },
     
     "ITCC45": { "name": "Computer Programming 3", "units": 3 },
-    "ITCC46": { "name": "Data Structures and Algorithms", "units": 3 },
-    "ITCC47": { "name": "Computer Architecture", "units": 3 },
-    "ITCC48": { "name": "Fundamentals of Networking", "units": 3 },
-    "ITCC49": { "name": "Web Systems and Technologies 1", "units": 3 },
+    "ITCC47": { "name": "Data Structures and Algorithms", "units": 3 },
+    "IT51": { "name": "Computer Architecture", "units": 3 },
+    "IT53": { "name": "Fundamentals of Networking", "units": 3 },
+    "IT55": { "name": "Web Systems and Technologies 1", "units": 3 },
     "GEE11": { "name": "Environmental Science", "units": 3 },
     "GEC17": { "name": "Science Technology & Society", "units": 3 },
     "PE33": { "name": "Physical Activities Towards Health and Fitness 3 (PATH-Fit 3)", "units": 2 },
 
+
+
+
+    "ITCC46": { "name": "Information Management", "units": 3 },
+    "ITCC48": { "name": "Application Development and Emerging Technologies", "units": 3 },
+    "IT52": { "name": "Operating Systems", "units": 3 },
+    "IT54": { "name": "Routing and Switching", "units": 3 },
+    "IT56": { "name": "Web Systems and Technologies 2", "units": 3 },
+    "STAT22": { "name": "Elementary Statistics and Probability", "units": 3 },
+    "GEE15": { "name": "Gender and Society", "units": 3 },
+    "PE34": { "name": "Physical Activities Towards Health and Fitness 4 (PATH-Fit 4)", "units": 2 },
+
+
+    "IT57": { "name": "Introduction to Human Computer Interaction", "units": 3 },
+    "IT59": { "name": "Software Engineering", "units": 3 },
+    "IT61": { "name": "Fundamentals of Database Systems", "units": 3 },
+    "IT63": { "name": "Multimedia Technologies", "units": 3 },
+    "IT95": { "name": "Research Methods for IT", "units": 3 },
+    "IT_ELECT1": { "name": "IT Elective 1", "units": 3 },
+    "IT_ELECT2": { "name": "IT Elective 2", "units": 3 },
+
+    "IT58": { "name": "Emerging Technologies in HCI", "units": 3 },
+    "IT60": { "name": "Information Assurance and Security 1", "units": 3 },
+    "IT99": { "name": "IT Trips and Seminars", "units": 1 },
+    "IT100_1": { "name": "IT Capstone Project and Research I", "units": 3 },
+    "IT62": { "name": "Technopreneurship", "units": 3 },
+    "IT_ELECT3": { "name": "IT Elective 3", "units": 3 },
+    "IT_ELECT4": { "name": "IT Elective 4", "units": 3 },
+
+    "IT65": { "name": "Information Assurance and Security 2", "units": 3 },
+    "IT67": { "name": "Integrative Programming and Technologies", "units": 3 },
+    "IT69": { "name": "Systems Administration and Maintenance", "units": 3 },
+    "IT71": { "name": "Systems Integration and Architecture", "units": 3 },
+    "IT73": { "name": "Social and Professional Issues in IT", "units": 3 },
+    "IT100_2": { "name": "IT Capstone Project and Research II", "units": 3 },
+    "IT_ELECT5": { "name": "IT Elective 5", "units": 3 },
+
+    "IT98": { "name": "Practicum", "units": 6 },
+    "ADD101": { "name": "Add-on Units", "units": 3 },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     "CHY32" : { "name": "Organic Chemistry", "units": 2 },
     "CHY32.1" : { "name": "Organic Chemistry Laboratory", "units": 1 },
     "VPY40" :{ "name": "Veterinary Biochemistry", "units": 4 },
-    "GEE15" : {"name": "Gender and Society", "units": 3},
-    
+
     "VZT51" :{ "name": "Principles of Animal Production and Economics", "units": 3 },
     "VZT53" :{ "name": "Principles of Animal Nutrition", "units": 3 },
     "VZT55" :{ "name": "Principles of Animal Breeding and Genetics", "units": 3 },
@@ -42,8 +101,6 @@
     "VAN52" :{ "name": "Comparative Veterinary Anatomy", "units": 4 },
     "VAN54" :{ "name": "Microscopic Anatomy", "units": 4 },
 
-    "PE34": { "name": "Physical Activities Towards Health and Fitness 2 (PATH-Fit 2)", "units": 2 },
-    
 
     "VZT61" : { "name": "Equine Production and Management", "units": 2 },
     "VZT63" : { "name": "Animal Welfare and Ethology", "units": 3 },
