@@ -172,8 +172,7 @@ document.getElementById("loadSubjectsBtn").addEventListener("click", () => {
   subjects.forEach(s => createMainGroup(s.name, s.units));
 
 
-    // 🔥 Disable placeholder permanently after choosing a subject
-
+   updateTotalUnitsEntered();
   
 });
 
@@ -200,7 +199,7 @@ function createMainGroup(subjectName = "", defaultUnits = "") {
 if (mainSelect.value !== "") {
         mainSelect.options[0].disabled = true;
     }
-    
+
   // GRADE SELECT
   const gradeSelect = document.createElement("select");
   gradeSelect.appendChild(new Option("Enter Grade", "", true, true));
